@@ -25,3 +25,4 @@ let burger = {
 
 
 // export at the end of the file
+module.exports = burger;
