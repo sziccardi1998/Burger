@@ -1,5 +1,5 @@
-const connection = require('./connection');
-const mysql = require('mysql');
+var connection = require('./connection');
+
 
 
 const selectAll = () => {
