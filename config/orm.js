@@ -45,5 +45,16 @@ var orm = {
             cb(res);
         });
     },
-    updateOne: function
+    updateOne: function(table, objColVals, condition, cb) {
+        var dbQuery = "UPDATE " + table + " SET " + objectToSQL(objColVals) + " WHERE " + condition;
+        console.log(dbQuery);
+
+        connection.query(dbQuery, function(err, res) {
+            if (err) {
+                throw err;
+            }
+            cb(res);
+        });
+    }
+    // if any other functions need added they will be placed here
 }
