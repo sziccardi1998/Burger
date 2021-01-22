@@ -20,7 +20,12 @@ let burger = {
         });
     },
     // if additional orm functions are added they will be updated here
-}
+    delete: function(condition, cb) {
+        ORM.delete("burgers", condition, function(res) {
+            cb(res);
+        })
+    }
+};
 
 
 
