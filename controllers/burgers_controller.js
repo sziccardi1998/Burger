@@ -35,4 +35,12 @@ router.put("/api/burgers/:id", function(req, res) {
     });
 });
 
+// write orm function to handle deletions
+router.delete("/api/burgers/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+    console.log("condition", condition);
+})
+
 // export the app
+
+module.exports = router;

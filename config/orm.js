@@ -12,9 +12,9 @@ function printQuestionMark(num) {
 
 // create a helper function that converts key/value pairs
 function objectToSQL(ob) {
-    var arr = [];
+    let arr = [];
     for (var key in ob) {
-        var value = ob[key];
+        let value = ob[key];
         if (Object.hasOwnProperty.call(ob, key)) {
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
@@ -25,9 +25,9 @@ function objectToSQL(ob) {
     return arr.toString();
 }
 
-var orm = {
+let orm = {
     selectAll: function(table, cb) {
-        var dbQuery = "SELECT * FROM " + table + ";";
+        let dbQuery = "SELECT * FROM " + table + ";";
         connection.query(dbQuery, function(err, res) {
             if (err) {
                 throw err;
@@ -36,7 +36,7 @@ var orm = {
         });
     },
     insertOne: function(table, cols, vals, cb) {
-        var dbQuery = "INSERT INTO " + table + " (" + cols.toString() + ") VALUES (" + printQuestionMark(vals.length) + ") ";
+        let dbQuery = "INSERT INTO " + table + " (" + cols.toString() + ") VALUES (" + printQuestionMark(vals.length) + ") ";
         console.log(dbQuery);
         connection.query(dbQuery, vals, function(err, res) {
             if (err) {
@@ -46,7 +46,18 @@ var orm = {
         });
     },
     updateOne: function(table, objColVals, condition, cb) {
-        var dbQuery = "UPDATE " + table + " SET " + objectToSQL(objColVals) + " WHERE " + condition;
+        let dbQuery = "UPDATE " + table + " SET " + objectToSQL(objColVals) + " WHERE " + condition;
+        console.log(dbQuery);
+
+        connection.query(dbQuery, function(err, res) {
+            if (err) {
+                throw err;
+            }
+            cb(res);
+        });
+    },
+    delete: function(table, condition, cb) {
+        let dbQuery = "DELETE FROM " + table + " WHERE " + condition;
         console.log(dbQuery);
 
         connection.query(dbQuery, function(err, res) {
@@ -57,6 +68,6 @@ var orm = {
         });
     }
     // if any other functions need added they will be placed here
-}
+};
 
 module.exports = orm;
