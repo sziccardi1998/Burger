@@ -58,3 +58,5 @@ var orm = {
     }
     // if any other functions need added they will be placed here
 }
+
+module.exports = orm;
