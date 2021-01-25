@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
     // handle the submission of burgers
     $("#text-enter-button").on("click", function(event) {
         // prevent form from actually submitting
