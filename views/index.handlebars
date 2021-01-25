@@ -22,11 +22,11 @@
                     <div class="card-heading">
                         <strong>Pick Up Your Burger</strong>
                     </div>
-                    <ul>
+                    <ul id="burgersToEat">
                         {{#each burgers}}
                         {{#unless devoured}}
-                            <li class="list-group-item" idvalue={{id}}>
-                            <p class="burger-name">{{burger_name}} <button class="eatBurger btn float-right">Devour</button></p>
+                            <li class="list-group-item burger" data-id="{{this.id}}">
+                            <p class="burger-name">{{burger_name}} <button class="btn float-right eatBurger">Devour</button></p>
                             </li>
                         {{/unless}}
                         {{/each}}
@@ -43,7 +43,7 @@
                     <ul class="col-lg-6 " id="devoured">
                         {{#each burgers}}
                         {{#if devoured}}
-                            <li class="list-group-item" idvalue={{id}}>
+                            <li class="list-group-item" data-id="{{this.id}}">
                             <p class="name">{{burger_name}}</p>
                             </li>
                         {{/if}}
